@@ -89,4 +89,4 @@ The Node test suite passes (8/8). A Vite production build still needs a fresh de
 See `docs/QA_AND_PRIVACY.md` and `docs/DEMO_SCRIPT.md` for further details.
 
 ## License
-MIT. See `LICENSE`.
+Permission required: see [License](#license) and `LICENSE`.
