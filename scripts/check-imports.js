@@ -1,0 +1,21 @@
+import { readFileSync } from 'node:fs';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const app = readFileSync(resolve(root, 'src/App.jsx'), 'utf8');
+const logic = readFileSync(resolve(root, 'src/logic.js'), 'utf8');
+const iconImport = app.match(/import\s*\{([^}]+)\}\s*from\s*['"]lucide-react['"]/);
+if (!iconImport) throw new Error('Could not find the lucide-react icon import in src/App.jsx');
+const iconNames = iconImport[1].split(',').map((part) => part.trim().split(/\s+as\s+/)[0]).filter(Boolean);
+const icons = await import('lucide-react');
+const missingIcons = iconNames.filter((name) => !(name in icons));
+if (missingIcons.length) throw new Error(`App imports missing lucide-react icons: ${missingIcons.join(', ')}`);
+for (const name of iconNames) console.log(`✓ icon ${name}`);
+const importMatch = app.match(/import\s*\{([^}]+)\}\s*from\s*['"]\.\/logic\.js['"]/);
+if (!importMatch) throw new Error('Could not find the named logic.js import in src/App.jsx');
+const names = importMatch[1].split(',').map((part) => part.trim().split(/\s+as\s+/)[0]).filter(Boolean);
+const missing = names.filter((name) => !new RegExp(`export\\s+(?:function|const|let|class)\\s+${name}\\b`).test(logic));
+if (missing.length) throw new Error(`App imports missing exports from logic.js: ${missing.join(', ')}`);
+for (const name of names) console.log(`✓ ${name}`);
+console.log('All local named imports are present.');

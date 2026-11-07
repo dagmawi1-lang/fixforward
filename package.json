@@ -1,0 +1,22 @@
+{
+  "name": "stemergent-fixforward",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test",
+    "check": "node scripts/check-imports.js && node --check src/logic.js && node --test"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.1.2",
+    "vite": "^8.3.5",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "lucide-react": "^1.61.0"
+  },
+  "devDependencies": {},
+  "license": "MIT"
+}
