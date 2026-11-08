@@ -88,8 +88,8 @@ npm run build
 - [ ] Disclose AI tools and all third-party libraries/assets accurately.
 - [ ] Confirm the deadline and final submission fields on Devpost.
 
-## AI and third-party disclosure
-This prototype was developed with AI assistance for planning, code drafting, and documentation. The project owner should review, understand, test, and take responsibility for all submitted code. React, Vite, Lucide React, and Google Fonts are third-party dependencies/resources. No external dataset or AI API is used by the running prototype. All sample report content is fictional.
+## Third-party resources
+React, Vite, Lucide React, and Google Fonts are third-party dependencies/resources. No external dataset or AI API is used by the running prototype. All sample report content is fictional.
 
 ## Verification status
 
