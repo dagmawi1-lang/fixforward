@@ -1,6 +1,8 @@
-# FixForward — STEMergent Hacks 2026 · version 1.1.0
+# FixForward
 
-**Small fixes. Stronger communities.** FixForward is a community-maintenance observation board that helps people turn public-space issues into organized, prioritized follow-up.
+**Small fixes. Stronger communities.** FixForward is a community board for public-space maintenance issues such as broken lights, damaged benches, or blocked paths. It turns scattered observations into an organized, prioritized list that a community can follow from first report to resolution.
+
+Built for [STEMergent Hacks 2026](https://stemergent-hacks.devpost.com/) (Hackathon Pathway).
 
 ![Duplicate detection: it suggests supporting the existing report](docs/screenshot.jpg)
 
@@ -11,91 +13,57 @@
 - Designed the duplicate check that suggests supporting an existing report instead of adding a new one
 - Made the priority score explainable, with a point-by-point breakdown
 
-## Competition fit
-- **Event:** STEMergent Hacks 2026
-- **Pathway:** Hackathon Pathway
-- **Eligibility shown on Devpost:** students ages 13+
-- **Event window:** October 30–November 15, 2026
-- **Submission deadline:** November 15, 2026, 7:00 PM CST (confirm the live countdown/time-zone display before submitting)
-- **Team size:** Individual or teams up to four
-
-Official listing: https://stemergent-hacks.devpost.com/  
-Official rules: https://stemergent-hacks.devpost.com/rules
-
 ## The problem
-Small public-space maintenance issues can be hard for a community to communicate clearly and follow from first observation to resolution. Notes may be scattered across conversations, and accessibility-related concerns can be overlooked.
 
-## The solution
-FixForward provides a lightweight shared board for recording observations about public spaces, categorizing them, indicating a general location, tracking status, and organizing the queue with a transparent priority heuristic.
+Small public-space problems are noticed by many people but reported in scattered, duplicate, or vague ways, and nobody can see what happens next. Accessibility issues in particular are easy to overlook.
 
-## Current prototype features
-- Responsive dashboard with seeded fictional demo observations.
-- Create an observation with title, category, general public area, description, and severity.
-- Input validation and a reminder not to enter home addresses or personal details.
-- Search and status filtering.
-- Priority and recent sorting.
-- Community support votes with a one-vote-per-report-per-browser guard and repeat-vote feedback.
-- Demo status updates (moderator control) and status labels.
-- Export report data as JSON or CSV. CSV text fields are quoted and spreadsheet formula prefixes are neutralized.
-- Local browser persistence via `localStorage`.
-- Eight passing Node tests for validation, ID generation, sorting, priority scoring, vote tracking, and defensive stored-data normalization.
+## Features
 
-## Run locally
-Requires Node.js 20.19+ (or Node.js 22+).
+- **Report an observation** with a title, category, general public area, description, and severity. Validation reminds people not to enter home addresses or personal details.
+- **Duplicate detection:** while you type, similar open reports are suggested so you can support an existing one instead of filing a duplicate.
+- **Explainable priority:** each report's score comes from severity, an accessibility boost, and community support, and the breakdown is shown point by point.
+- **Community support votes,** limited to one per report per browser.
+- **Status tracking** with a full history for each report, plus a resolution progress bar for the whole board.
+- **Search, filters, and sorting** by status, category, priority, or recency.
+- **Export** as JSON, as CSV (with spreadsheet-formula protection), or as a plain-text action brief for a facilities or parks team.
+- Responsive and keyboard-accessible.
+
+## Tech stack
+
+React · Vite · JavaScript · CSS · Node.js test runner
+
+## Getting started
+
+Requires Node.js 20.19+ or 22+.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite. Run tests with:
+Open the local URL printed by Vite. To create a production build, run `npm run build`.
+
+## Testing
 
 ```bash
-npm test
-npm run check
+npm run check   # import checks, syntax checks, and the unit test suite
 ```
 
-Create a production build with:
+## How it works
 
-```bash
-npm test
-npm run build
+Reports are stored in the browser's `localStorage` and start from fictional sample data. Priority is calculated as:
+
+```
+priority = severity × 10 + accessibility boost + min(support votes, 20)
 ```
 
-## Important limitations
-- This is a prototype, not a connection to a city or parks department.
-- Seeded observations are fictional examples.
-- Reports and vote history are stored only in the current browser; there is no shared multi-user database yet. Clearing browser storage or switching browsers resets the vote guard.
-- The priority score is an organizational aid, not an official safety assessment or an automated determination of danger.
-- Do not use FixForward for emergencies. Contact the appropriate local authority for immediate hazards.
-- Avoid entering names, phone numbers, home addresses, or other identifying details.
+Severity weights are High = 3, Medium = 2, and Low = 1. The score orders the list; it isn't an official safety rating. See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) and [`docs/QA_AND_PRIVACY.md`](docs/QA_AND_PRIVACY.md).
 
-## Judging alignment
-- **Innovation & originality:** combines community observation, accessibility-aware sorting, and transparent status tracking.
-- **Problem definition:** focuses on a recognizable gap between noticing a public-space issue and following up.
-- **Impact & relevance:** helps communities organize observations about accessibility and maintenance needs.
-- **Feasibility & scalability:** can later connect to verified local workflows, moderation, and an opt-in shared database.
-- **Presentation:** short report-to-resolution flow is easy to demonstrate.
+## Scope
 
-## Submission checklist
-- [ ] Register on Devpost and confirm all team members meet current eligibility requirements.
-- [ ] Select the Hackathon Pathway.
-- [ ] Publish a repository with source code and this README.
-- [ ] Deploy the app and test it on desktop and mobile.
-- [ ] Capture screenshots or a short GIF.
-- [ ] Record a concise demo video if requested/recommended.
-- [ ] Write a project description covering problem, solution, and how it works.
-- [ ] Disclose AI tools and all third-party libraries/assets accurately.
-- [ ] Confirm the deadline and final submission fields on Devpost.
-
-## Third-party resources
-React, Vite, Lucide React, and Google Fonts are third-party dependencies/resources. No external dataset or AI API is used by the running prototype. All sample report content is fictional.
-
-## Verification status
-
-The Node test suite passes (8/8). A Vite production build still needs a fresh dependency install on the target platform; the development workspace could not use the platform-specific Vite native binding from the reference project archive.
-
-See `docs/QA_AND_PRIVACY.md` and `docs/DEMO_SCRIPT.md` for further details.
+- Data is stored per browser. A shared database, accounts, and integration with a city or parks department are natural next steps.
+- FixForward isn't an emergency service. Urgent hazards should go to the local authority.
 
 ## License
-Permission required: see [License](#license) and `LICENSE`.
+
+**Permission required.** © 2026 Dagmawi Melaku. You need my written permission before using, copying, or modifying this code, and any approved use must credit me with a link to this repository. Viewing, forking on GitHub, and running it to judge or review a submission are allowed without asking. To ask, [open an issue](../../issues/new). See [LICENSE](LICENSE) for the full terms.

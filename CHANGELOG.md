@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.0 - 2026-11-07
+- **Duplicate detection:** while you type a report, similar open reports (same category or overlapping words in the title and place) are suggested so you can support one instead of filing a duplicate.
+- **Explainable priority:** each report shows a point-by-point breakdown of its priority score.
+- **Status history** for every report, a category filter, and a resolution progress bar.
+- **Action brief:** a plain-text summary of open issues, ordered by priority, to hand to a facilities or parks team.
+- Fixed missing `normalizeReports` and `hasVoted` imports in the app.
+- Accessibility fixes: Escape closes dialogs, focus moves to the first field, and labels are complete.
+- Tests: 8 → 14.
+
 ## 1.1.0
 - Added a one-vote-per-report-per-browser guard using a local vote ledger.
 - Added accessible pressed/disabled state and clear feedback for repeat support attempts.

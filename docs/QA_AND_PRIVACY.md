@@ -1,8 +1,7 @@
-# QA and privacy notes — FixForward 1.1
+# Testing and privacy
 
 ## Automated checks
 - Node built-in tests cover priority scoring, stable sorting, required-field validation, ID creation, vote-ledger checks, and defensive report normalization.
-- The current suite contains eight passing tests.
 
 ## Data boundaries
 - Reports and the browser-local vote ledger are stored in localStorage.
@@ -12,8 +11,8 @@
 - The app should not collect home addresses, names, phone numbers, or other personal information.
 - FixForward is not an emergency reporting tool and does not dispatch crews.
 
-## Manual checks still required
-- Fresh-install dependencies and run a Vite production build.
+## Manual test checklist
+- Fresh `npm install` and Vite production build.
 - Test form validation and repeat-vote feedback in a browser.
 - Check mobile layout, keyboard focus, and screen-reader labels.
 - Verify JSON export opens and contains all current report fields.
