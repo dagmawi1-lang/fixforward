@@ -2,6 +2,15 @@
 
 **Small fixes. Stronger communities.** FixForward is a community-maintenance observation board that helps people turn public-space issues into organized, prioritized follow-up.
 
+![Duplicate detection: it suggests supporting the existing report](docs/screenshot.jpg)
+
+## My role & contributions
+
+**Solo developer · AI-assisted**
+
+- Designed the duplicate check that suggests supporting an existing report instead of adding a new one
+- Made the priority score explainable, with a point-by-point breakdown
+
 ## Competition fit
 - **Event:** STEMergent Hacks 2026
 - **Pathway:** Hackathon Pathway
